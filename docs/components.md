@@ -20,7 +20,7 @@ This document describes each component of the website and how to modify them.
             <li><a href="#shop">Shop</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="[REDBUBBLE_URL]" target="_blank" class="nav-cta">Visit Shop</a>
+        <a href="[REDBUBBLE_URL]" target="_blank" rel="noopener noreferrer" class="nav-cta">Visit Shop</a>
         <button class="mobile-menu-btn" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
@@ -33,6 +33,19 @@ This document describes each component of the website and how to modify them.
 - Adds `.scrolled` class when user scrolls down (adds background blur)
 - Mobile menu button visible only on screens < 768px
 - Nav links hidden on mobile (replaced by hamburger menu)
+- Mobile menu dynamically reads links from `.nav-links` and `.nav-cta` elements
+
+### Mobile Menu
+
+The mobile menu is created dynamically via JavaScript and styled in CSS. It reads navigation links from the existing HTML to stay in sync (DRY principle).
+
+```css
+/* Mobile menu styles are in styles.css */
+.mobile-menu { ... }
+.mobile-menu.active { ... }
+.mobile-nav-links { ... }
+.mobile-nav-cta { ... }
+```
 
 ---
 
@@ -135,7 +148,7 @@ This document describes each component of the website and how to modify them.
 ### Product Card Template
 
 ```html
-<a href="[REDBUBBLE_CATEGORY_URL]" target="_blank" class="product-card">
+<a href="[REDBUBBLE_CATEGORY_URL]" target="_blank" rel="noopener noreferrer" class="product-card">
     <div class="product-icon">
         <img src="icons/icon_[name].png" alt="[Product]">
     </div>
@@ -249,3 +262,26 @@ This document describes each component of the website and how to modify them.
 | `.btn-secondary` | Transparent with border |
 | `.btn-light` | White background |
 | `.btn-large` | Larger padding for CTAs |
+
+---
+
+## Accessibility
+
+All interactive elements have focus styles for keyboard navigation:
+
+```css
+.btn:focus-visible,
+.product-card:focus-visible,
+.nav-links a:focus-visible {
+    outline: 2px solid var(--bread-dark);
+    outline-offset: 3px;
+}
+```
+
+### External Links
+
+All external links must include security attributes:
+
+```html
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">Link</a>
+```

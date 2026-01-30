@@ -37,7 +37,7 @@ In `index.html`, find the `<div class="products-grid">` section and add:
 
 ```html
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=[IACODE]"
-    target="_blank" class="product-card">
+    target="_blank" rel="noopener noreferrer" class="product-card">
     <div class="product-icon">
         <img src="icons/icon_[name].png" alt="[Product Name]">
     </div>
@@ -77,7 +77,7 @@ In `index.html`, find the `<div class="contact-info">` section and add:
         <img src="icons/icon_[type].png" alt="[Type]">
     </div>
     <h4>[Platform/Method]</h4>
-    <a href="[full URL]" target="_blank">@[handle or display text]</a>
+    <a href="[full URL]" target="_blank" rel="noopener noreferrer">@[handle or display text]</a>
 </div>
 ```
 
@@ -155,7 +155,7 @@ Search for `redbubble.com/people/the-bakery-shop` and update all occurrences.
 Update the TikTok link in the contact section:
 
 ```html
-<a href="https://www.tiktok.com/@thebakerytiktok" target="_blank">@thebakerytiktok</a>
+<a href="https://www.tiktok.com/@thebakerytiktok" target="_blank" rel="noopener noreferrer">@thebakerytiktok</a>
 ```
 
 ### Email

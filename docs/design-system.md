@@ -21,9 +21,9 @@ Background colors that complement the primary palette.
 
 | Name | Variable | Hex | Usage |
 |------|----------|-----|-------|
-| Cream | `--cream` | `#E8DCC8` | Secondary backgrounds |
+| Cream Dark | `--cream-dark` | `#E8DCC8` | Secondary backgrounds |
 | Cream Light | `--cream-light` | `#F5EEE0` | Card backgrounds |
-| Cream Pale | `--cream-pale` | `#FDF9F3` | Page backgrounds |
+| Cream White | `--cream-white` | `#FDF9F3` | Page backgrounds |
 
 ### Dark Colors
 
@@ -33,14 +33,14 @@ For text and dark sections.
 |------|----------|-----|-------|
 | Dark Brown | `--dark-brown` | `#2C2C2C` | Body text |
 | Dark Black | `--dark-black` | `#1A1A1A` | Headings, footer |
-| Dark Soft | `--dark-soft` | `#4A4A4A` | Secondary text |
+| Dark Soft | `--dark-soft` | `#3D3D3D` | Secondary text |
 
 ## Gradients
 
 ```css
---gradient-bread: linear-gradient(135deg, #8B6914 0%, #D4A843 50%, #C4A35A 100%);
---gradient-cream: linear-gradient(180deg, #FDF9F3 0%, #F5EEE0 100%);
---gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%);
+--gradient-bread: linear-gradient(135deg, var(--bread-dark) 0%, var(--bread-golden) 100%);
+--gradient-cream: linear-gradient(180deg, var(--cream-white) 0%, var(--cream-light) 100%);
+--gradient-dark: linear-gradient(135deg, var(--dark-black) 0%, var(--dark-brown) 100%);
 ```
 
 ## Typography
@@ -96,10 +96,12 @@ padding: 0 16px;  /* Mobile */
 
 ## Shadows
 
+Shadows use brand colors for a warmer feel:
+
 ```css
---shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
---shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.1);
---shadow-strong: 0 16px 60px rgba(0, 0, 0, 0.15);
+--shadow-soft: 0 4px 20px rgba(139, 105, 20, 0.1);
+--shadow-medium: 0 8px 40px rgba(139, 105, 20, 0.15);
+--shadow-strong: 0 20px 60px rgba(26, 26, 26, 0.2);
 ```
 
 ## Border Radius
@@ -114,8 +116,8 @@ padding: 0 16px;  /* Mobile */
 ## Transitions
 
 ```css
---transition-fast: all 0.2s ease;
---transition-smooth: all 0.3s ease;
+--transition-fast: 0.2s ease;
+--transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 ```
 
 ## Responsive Breakpoints
@@ -139,3 +141,16 @@ All icons should:
   - Feature icons: 40x40px
   - Product icons: 48-64px
   - Contact icons: 40-48px
+
+## Focus States (Accessibility)
+
+All interactive elements have `:focus-visible` styles:
+
+```css
+.btn:focus-visible,
+.nav-links a:focus-visible,
+.product-card:focus-visible {
+    outline: 2px solid var(--bread-dark);
+    outline-offset: 3px;
+}
+```

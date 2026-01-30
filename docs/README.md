@@ -20,7 +20,7 @@ Welcome to The Bakery website documentation. This guide covers everything you ne
 
 ## Links
 
-- **Live Site**: <https://theofficialbakery.github.io/the-bakery-website/>
+- **Live Site**: <https://the-bakery.co/>
 - **Redbubble Shop**: <https://www.redbubble.com/people/the-bakery-shop/>
 - **TikTok**: <https://www.tiktok.com/@thebakerytiktok>
 - **Email**: <TheOfficialBakery@proton.me>

@@ -39,8 +39,8 @@ Follow these standards when contributing to The Bakery website.
 <!-- Always include alt text for images -->
 <img src="image.png" alt="Descriptive alt text">
 
-<!-- External links should open in new tab -->
-<a href="https://external.com" target="_blank">Link</a>
+<!-- External links MUST include rel="noopener noreferrer" for security -->
+<a href="https://external.com" target="_blank" rel="noopener noreferrer">Link</a>
 
 <!-- Use aria-label for icon-only buttons -->
 <button aria-label="Toggle menu">...</button>
@@ -204,6 +204,26 @@ document.querySelector('div');            // Avoid
 - Use arrow functions for callbacks
 - Use template literals for string interpolation
 - Handle errors gracefully
+- Wrap DOM-dependent code in `DOMContentLoaded`
+- Use `requestAnimationFrame` for scroll/resize handlers (throttling)
+- Keep styles in CSS files, not injected via JavaScript
+- Read values from DOM instead of hardcoding (DRY principle)
+
+### Performance
+
+```javascript
+// Use requestAnimationFrame for scroll handlers
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // Do work here
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
+```
 
 ---
 
