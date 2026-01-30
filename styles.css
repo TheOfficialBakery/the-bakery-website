@@ -959,7 +959,15 @@ body {
     }
 
     .scroll-indicator {
-        display: none;
+        display: none !important;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .hero-buttons {
+        position: relative;
+        z-index: 10;
     }
 
     /* About Section */
