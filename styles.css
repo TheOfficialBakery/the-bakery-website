@@ -1314,3 +1314,98 @@ body {
         display: inline-block;
     }
 }
+
+/* ===================================
+   Mobile Menu
+   =================================== */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(253, 249, 243, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-content {
+    text-align: center;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.mobile-nav-links li {
+    margin: 20px 0;
+}
+
+.mobile-nav-links a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.mobile-nav-links a:hover {
+    color: var(--bread-dark);
+}
+
+.mobile-nav-cta {
+    display: inline-block;
+    background: var(--gradient-bread);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ===================================
+   Scroll Animations
+   =================================== */
+.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* ===================================
+   Focus Styles (Accessibility)
+   =================================== */
+.btn:focus-visible,
+.nav-links a:focus-visible,
+.nav-cta:focus-visible,
+.product-card:focus-visible,
+.contact-card a:focus-visible,
+.footer-column a:focus-visible,
+.mobile-nav-links a:focus-visible {
+    outline: 2px solid var(--bread-dark);
+    outline-offset: 3px;
+}
+
+.nav-logo:focus-visible {
+    outline: 2px solid var(--bread-dark);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--bread-dark);
+    outline-offset: 4px;
+}
