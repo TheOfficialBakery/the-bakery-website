@@ -13,27 +13,52 @@
     <meta property="og:title" content="The Bakery | We Don't Cook We Bake!">
     <meta property="og:description"
         content="Fresh memes, funny jokes, and hilarious designs baked daily. Shop our collection on Redbubble!">
-    <meta property="og:image" content="Original.png">
+    <meta property="og:image" content="https://the-bakery.co/Original.png">
     <meta property="og:url" content="https://the-bakery.co/">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="The Bakery | We Don't Cook We Bake!">
     <meta name="twitter:description" content="Fresh memes, funny jokes, and hilarious designs baked daily.">
-    <meta name="twitter:image" content="Original.png">
+    <meta name="twitter:image" content="https://the-bakery.co/Original.png">
+
+    <!-- SEO & Security -->
+    <link rel="canonical" href="https://the-bakery.co/">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://the-bakery.co/Original.png">
+    <link rel="icon" type="image/png" href="Original.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.redbubble.com">
+    <link rel="dns-prefetch" href="https://www.redbubble.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "The Bakery",
+        "url": "https://the-bakery.co",
+        "logo": "https://the-bakery.co/Original.png",
+        "description": "Fresh memes, funny jokes, and hilarious designs baked daily.",
+        "sameAs": [
+            "https://www.redbubble.com/people/the-bakery-shop/",
+            "https://www.tiktok.com/@thebakerytiktok"
+        ]
+    }
+    </script>
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -56,7 +81,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-label="main-content">
+        <div id="main-content"></div>
         <div class="hero-bg"></div>
         <div class="hero-content">
             <div class="hero-logo-container">
@@ -96,24 +122,24 @@
                         perfect punchline.</p>
                     <div class="about-features">
                         <div class="feature">
-                            <div class="feature-icon"><img src="icons/icon_fresh_memes_1769729644932.png"
-                                    alt="Fresh Memes"></div>
+                        <div class="feature-icon"><img src="icons/icon_fresh_memes_1769729644932.png"
+                                    alt="Fresh Memes" loading="lazy"></div>
                             <div class="feature-text">
                                 <h4>Fresh Memes</h4>
                                 <p>Original humor baked fresh daily</p>
                             </div>
                         </div>
                         <div class="feature">
-                            <div class="feature-icon"><img src="icons/icon_premium_quality_1769729657133.png"
-                                    alt="Premium Quality"></div>
+                        <div class="feature-icon"><img src="icons/icon_premium_quality_1769729657133.png"
+                                    alt="Premium Quality" loading="lazy"></div>
                             <div class="feature-text">
                                 <h4>Premium Quality</h4>
                                 <p>High-quality prints on comfortable materials</p>
                             </div>
                         </div>
                         <div class="feature">
-                            <div class="feature-icon"><img src="icons/icon_perfect_gifts_1769729670285.png"
-                                    alt="Perfect Gifts"></div>
+                        <div class="feature-icon"><img src="icons/icon_perfect_gifts_1769729670285.png"
+                                    alt="Perfect Gifts" loading="lazy"></div>
                             <div class="feature-text">
                                 <h4>Perfect Gifts</h4>
                                 <p>Guaranteed laughs for friends & family</p>
@@ -142,35 +168,35 @@
             <div class="products-grid">
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=u-tees"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_tshirt_1769729683011.png" alt="T-Shirts"></div>
+                    <div class="product-icon"><img src="icons/icon_tshirt_1769729683011.png" alt="T-Shirts" loading="lazy"></div>
                     <h3>T-Shirts</h3>
                     <p>Wear your favorite memes and jokes with pride</p>
                     <span class="product-link">Shop Now →</span>
                 </a>
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=u-mugs"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_mug_1769729695627.png" alt="Mugs"></div>
+                    <div class="product-icon"><img src="icons/icon_mug_1769729695627.png" alt="Mugs" loading="lazy"></div>
                     <h3>Mugs</h3>
                     <p>Start your day with a laugh and a cuppa</p>
                     <span class="product-link">Shop Now →</span>
                 </a>
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=all-stickers"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_stickers_1769729709358.png" alt="Stickers"></div>
+                    <div class="product-icon"><img src="icons/icon_stickers_1769729709358.png" alt="Stickers" loading="lazy"></div>
                     <h3>Stickers</h3>
                     <p>Slap some humor on your laptop, phone, or wherever</p>
                     <span class="product-link">Shop Now →</span>
                 </a>
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=u-die-cut-magnet"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_magnet_1769732749551.png" alt="Magnets"></div>
+                    <div class="product-icon"><img src="icons/icon_magnet_1769732749551.png" alt="Magnets" loading="lazy"></div>
                     <h3>Magnets</h3>
                     <p>Stick some laughs on your fridge</p>
                     <span class="product-link">Shop Now →</span>
                 </a>
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=u-phone-cases"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_phone_case_1769729744375.png" alt="Phone Cases">
+                    <div class="product-icon"><img src="icons/icon_phone_case_1769729744375.png" alt="Phone Cases" loading="lazy">
                     </div>
                     <h3>Phone Cases</h3>
                     <p>Protect your phone with maximum humor</p>
@@ -178,7 +204,7 @@
                 </a>
 <a href="https://www.redbubble.com/people/the-bakery-shop/shop?artistUserName=the-bakery-shop&asc=u&iaCode=u-prints"
                     target="_blank" rel="noopener noreferrer" class="product-card">
-                    <div class="product-icon"><img src="icons/icon_wall_art_1769729756863.png" alt="Wall Art"></div>
+                    <div class="product-icon"><img src="icons/icon_wall_art_1769729756863.png" alt="Wall Art" loading="lazy"></div>
                     <h3>Wall Art</h3>
                     <p>Decorate your space with hilarious prints</p>
                     <span class="product-link">Shop Now →</span>
@@ -220,17 +246,17 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-card">
-                        <div class="contact-icon"><img src="icons/icon_email_1769729769562.png" alt="Email"></div>
+                        <div class="contact-icon"><img src="icons/icon_email_1769729769562.png" alt="Email" loading="lazy"></div>
                         <h4>Email Us</h4>
                         <a href="mailto:TheOfficialBakery@proton.me">TheOfficialBakery@proton.me</a>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon"><img src="icons/icon_shop_1769729781272.png" alt="Shop"></div>
+                        <div class="contact-icon"><img src="icons/icon_shop_1769729781272.png" alt="Shop" loading="lazy"></div>
                         <h4>Shop</h4>
                         <a href="https://www.redbubble.com/people/the-bakery-shop/" target="_blank" rel="noopener noreferrer">Visit Redbubble</a>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon"><img src="icons/icon_social_1769729793504.png" alt="Social"></div>
+                        <div class="contact-icon"><img src="icons/icon_social_1769729793504.png" alt="Social" loading="lazy"></div>
                         <h4>TikTok</h4>
                         <a href="https://www.tiktok.com/@thebakerytiktok" target="_blank" rel="noopener noreferrer">@thebakerytiktok</a>
                     </div>

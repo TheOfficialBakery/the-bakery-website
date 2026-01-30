@@ -625,7 +625,7 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: var(--shadow-strong);
     border-color: var(--bread-light);
 }
@@ -1408,4 +1408,49 @@ body {
 .mobile-menu-btn:focus-visible {
     outline: 2px solid var(--bread-dark);
     outline-offset: 4px;
+}
+
+/* ===================================
+   Skip Link (Accessibility)
+   =================================== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-bread);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ===================================
+   Reduced Motion Preferences
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hero-logo,
+    .hero-bg,
+    .about-logo {
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
 }

@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollAnimations();
     initSmoothScroll();
-    initProductCardEffects();
     initParallax();
 });
 
@@ -31,58 +30,67 @@ function initNavbar() {
 }
 
 /* ===================================
-   Mobile Menu Toggle
-   =================================== */
+    Mobile Menu Toggle
+    =================================== */
 function initMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const navCta = document.querySelector('.nav-cta');
 
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            // Create mobile menu if it doesn't exist
-            let mobileMenu = document.querySelector('.mobile-menu');
-            
-            if (!mobileMenu) {
-                mobileMenu = document.createElement('div');
-                mobileMenu.className = 'mobile-menu';
-                
-                // Build links dynamically from existing nav
-                let linksHtml = '';
-                if (navLinks) {
-                    navLinks.querySelectorAll('a').forEach(link => {
-                        linksHtml += `<li><a href="${link.getAttribute('href')}">${link.textContent}</a></li>`;
-                    });
-                }
-                
-                // Get CTA link from existing nav
-                const ctaHref = navCta ? navCta.getAttribute('href') : 'https://www.redbubble.com/people/the-bakery-shop/';
-                const ctaText = navCta ? navCta.textContent.trim() : 'Visit Shop';
-                
-                mobileMenu.innerHTML = `
-                    <div class="mobile-menu-content">
-                        <ul class="mobile-nav-links">
-                            ${linksHtml}
-                        </ul>
-                        <a href="${ctaHref}" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">${ctaText}</a>
-                    </div>
-                `;
-                document.body.appendChild(mobileMenu);
+    if (!menuBtn) return;
 
-                // Close menu when clicking links
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('active');
-                        menuBtn.classList.remove('active');
-                    });
-                });
-            }
-
-            // Toggle menu
-            mobileMenu.classList.toggle('active');
-            menuBtn.classList.toggle('active');
+    // Create mobile menu once during initialization
+    let mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!mobileMenu) {
+        mobileMenu = createMobileMenu(navLinks, navCta);
+        document.body.appendChild(mobileMenu);
+        
+        // Attach event listeners once during creation
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
         });
     }
+
+    // Toggle menu on button click
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+    });
+}
+
+/**
+ * Creates the mobile menu element
+ */
+function createMobileMenu(navLinks, navCta) {
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'mobile-menu';
+    
+    // Build links dynamically from existing nav
+    let linksHtml = '';
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            linksHtml += `<li><a href="${link.getAttribute('href')}">${link.textContent}</a></li>`;
+        });
+    }
+    
+    // Get CTA link from existing nav
+    const ctaHref = navCta ? navCta.getAttribute('href') : 'https://www.redbubble.com/people/the-bakery-shop/';
+    const ctaText = navCta ? navCta.textContent.trim() : 'Visit Shop';
+    
+    mobileMenu.innerHTML = `
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                ${linksHtml}
+            </ul>
+            <a href="${ctaHref}" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">${ctaText}</a>
+        </div>
+    `;
+    
+    return mobileMenu;
 }
 
 /* ===================================
@@ -142,14 +150,15 @@ function initSmoothScroll() {
 }
 
 /* ===================================
-   Parallax Effect on Hero
-   =================================== */
+    Parallax Effect on Hero
+    =================================== */
 function initParallax() {
     const hero = document.querySelector('.hero');
-    const heroLogo = document.querySelector('.hero-logo');
+    const heroLogoContainer = document.querySelector('.hero-logo-container');
     let ticking = false;
 
-    if (hero && heroLogo) {
+    // Apply parallax to container instead of logo to avoid CSS animation conflict
+    if (hero && heroLogoContainer) {
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
@@ -157,7 +166,7 @@ function initParallax() {
                     const heroHeight = hero.offsetHeight;
                     
                     if (scrolled < heroHeight) {
-                        heroLogo.style.transform = `translateY(${scrolled * 0.3}px)`;
+                        heroLogoContainer.style.transform = `translateY(${scrolled * 0.3}px)`;
                     }
                     ticking = false;
                 });
@@ -167,17 +176,4 @@ function initParallax() {
     }
 }
 
-/* ===================================
-   Product Card Hover Effects
-   =================================== */
-function initProductCardEffects() {
-    document.querySelectorAll('.product-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-}
+
