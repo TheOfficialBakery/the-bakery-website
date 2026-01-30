@@ -195,24 +195,36 @@ function initBreadcrumbTrail() {
     if (!hero) return;
 
     const PARTICLE_COUNT = 8;
-    const positions = [];
+    const GRAVITY = 0.15;
+    const SPAWN_INTERVAL = 80; // ms between spawning new crumbs
+    
     let isInHero = false;
     let animationId = null;
+    let lastSpawnTime = 0;
+    let currentIndex = 0;
 
     // Create trail container and particles (fixed pool - no creation/destruction)
     const trail = document.createElement('div');
     trail.className = 'breadcrumb-trail';
     trail.setAttribute('aria-hidden', 'true');
 
+    const crumbs = [];
     for (let i = 0; i < PARTICLE_COUNT; i++) {
         const particle = document.createElement('div');
         particle.className = 'breadcrumb-particle';
         trail.appendChild(particle);
-        positions.push({ x: 0, y: 0 });
+        crumbs.push({
+            el: particle,
+            x: 0,
+            y: 0,
+            vy: 0, // vertical velocity for gravity
+            vx: 0, // slight horizontal drift
+            opacity: 0,
+            active: false
+        });
     }
 
     document.body.appendChild(trail);
-    const particles = trail.querySelectorAll('.breadcrumb-particle');
 
     // Track mouse position
     let mouseX = 0;
@@ -239,28 +251,52 @@ function initBreadcrumbTrail() {
     });
 
     // Animation loop - only runs when cursor is in hero
-    function updateTrail() {
+    function updateTrail(timestamp) {
         if (!isInHero) {
-            // Fade out particles when leaving hero
-            particles.forEach(p => p.style.opacity = '0');
+            // Fade out all particles when leaving hero
+            crumbs.forEach(c => {
+                c.opacity = 0;
+                c.active = false;
+                c.el.style.opacity = '0';
+            });
             animationId = null;
             return;
         }
 
-        // Update positions with trailing effect
-        positions[0].x += (mouseX - positions[0].x) * 0.3;
-        positions[0].y += (mouseY - positions[0].y) * 0.3;
-
-        for (let i = 1; i < PARTICLE_COUNT; i++) {
-            positions[i].x += (positions[i - 1].x - positions[i].x) * 0.3;
-            positions[i].y += (positions[i - 1].y - positions[i].y) * 0.3;
+        // Spawn new crumb at cursor position periodically
+        if (timestamp - lastSpawnTime > SPAWN_INTERVAL) {
+            const crumb = crumbs[currentIndex];
+            crumb.x = mouseX;
+            crumb.y = mouseY;
+            crumb.vy = 0.5 + Math.random() * 0.5; // initial downward velocity
+            crumb.vx = (Math.random() - 0.5) * 1.5; // slight random horizontal drift
+            crumb.opacity = 1;
+            crumb.active = true;
+            
+            currentIndex = (currentIndex + 1) % PARTICLE_COUNT;
+            lastSpawnTime = timestamp;
         }
 
-        // Apply transforms to particles
-        particles.forEach((particle, i) => {
-            const opacity = 1 - (i / PARTICLE_COUNT) * 0.8;
-            particle.style.transform = `translate(${positions[i].x}px, ${positions[i].y}px)`;
-            particle.style.opacity = opacity;
+        // Update each crumb with gravity
+        crumbs.forEach(crumb => {
+            if (!crumb.active) return;
+
+            // Apply gravity
+            crumb.vy += GRAVITY;
+            crumb.y += crumb.vy;
+            crumb.x += crumb.vx;
+
+            // Fade out as it falls
+            crumb.opacity -= 0.02;
+
+            if (crumb.opacity <= 0) {
+                crumb.opacity = 0;
+                crumb.active = false;
+            }
+
+            // Apply to DOM
+            crumb.el.style.transform = `translate(${crumb.x}px, ${crumb.y}px)`;
+            crumb.el.style.opacity = crumb.opacity;
         });
 
         animationId = requestAnimationFrame(updateTrail);
