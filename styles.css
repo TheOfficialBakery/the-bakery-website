@@ -1433,8 +1433,40 @@ body {
 }
 
 /* ===================================
-   Reduced Motion Preferences
+   Breadcrumb Cursor Trail (Hero Only)
    =================================== */
+.breadcrumb-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.breadcrumb-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Particle size variations */
+.breadcrumb-particle:nth-child(1) { width: 8px; height: 8px; background: var(--bread-golden); }
+.breadcrumb-particle:nth-child(2) { width: 6px; height: 6px; background: var(--bread-light); }
+.breadcrumb-particle:nth-child(3) { width: 7px; height: 7px; background: var(--bread-medium); }
+.breadcrumb-particle:nth-child(4) { width: 5px; height: 5px; background: var(--bread-golden); }
+.breadcrumb-particle:nth-child(5) { width: 6px; height: 6px; background: var(--bread-dark); }
+.breadcrumb-particle:nth-child(6) { width: 4px; height: 4px; background: var(--bread-light); }
+.breadcrumb-particle:nth-child(7) { width: 5px; height: 5px; background: var(--bread-medium); }
+.breadcrumb-particle:nth-child(8) { width: 4px; height: 4px; background: var(--bread-golden); }
+
+/* ===================================
+    Reduced Motion Preferences
+    =================================== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
