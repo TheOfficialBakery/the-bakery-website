@@ -86,7 +86,9 @@ function initMobileMenu() {
 
     // Close on Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
     });
 }
 
