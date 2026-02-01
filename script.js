@@ -18,7 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+
+    // Update navbar based on current scroll position
+    function updateNavbar() {
         const currentScroll = window.pageYOffset;
 
         // Add scrolled class when page is scrolled
@@ -26,6 +29,19 @@ function initNavbar() {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+    }
+
+    // Sync initial state in case page loads already scrolled
+    window.requestAnimationFrame(updateNavbar);
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateNavbar();
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 }
