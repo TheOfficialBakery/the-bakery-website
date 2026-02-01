@@ -33,12 +33,18 @@ function initNavbar() {
 /* ===================================
     Mobile Menu Toggle
     =================================== */
+let mobileMenuInitialized = false;
+
 function initMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const navCta = document.querySelector('.nav-cta');
 
     if (!menuBtn) return;
+
+    // Prevent duplicate initialization
+    if (mobileMenuInitialized) return;
+    mobileMenuInitialized = true;
 
     // Create mobile menu once during initialization
     let mobileMenu = document.querySelector('.mobile-menu');
