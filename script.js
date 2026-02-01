@@ -260,7 +260,8 @@ function initBreadcrumbTrail() {
     let mouseX = 0;
     let mouseY = 0;
 
-    // Cache hero bounds to avoid layout thrashing in mousemove
+    // PERFORMANCE: Cache hero bounds to avoid layout thrashing in mousemove.
+    // We use document-relative coordinates so this only needs updates on resize, not scroll.
     let heroBounds = { top: 0, right: 0, bottom: 0, left: 0 };
 
     function updateHeroBounds() {
@@ -292,7 +293,7 @@ function initBreadcrumbTrail() {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Check if mouse is within hero section bounds using cached document coordinates
+        // Optimized: Check if mouse is within hero section bounds using cached document coordinates
         const wasInHero = isInHero;
         isInHero = (
             e.pageX >= heroBounds.left &&
