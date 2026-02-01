@@ -33,12 +33,18 @@ function initNavbar() {
 /* ===================================
     Mobile Menu Toggle
     =================================== */
+let mobileMenuInitialized = false;
+
 function initMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const navCta = document.querySelector('.nav-cta');
 
     if (!menuBtn) return;
+
+    // Prevent duplicate initialization
+    if (mobileMenuInitialized) return;
+    mobileMenuInitialized = true;
 
     // Create mobile menu once during initialization
     let mobileMenu = document.querySelector('.mobile-menu');
@@ -50,16 +56,37 @@ function initMobileMenu() {
         // Attach event listeners once during creation
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('active');
+                closeMenu();
             });
         });
     }
 
+    function closeMenu() {
+        if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            menuBtn.classList.remove('active');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.focus();
+        }
+    }
+
     // Toggle menu on button click
     menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
+        const isExpanded = mobileMenu.classList.toggle('active');
         menuBtn.classList.toggle('active');
+        menuBtn.setAttribute('aria-expanded', isExpanded);
+
+        if (isExpanded) {
+            const firstLink = mobileMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+        } else {
+            menuBtn.focus();
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
     });
 }
 
@@ -69,6 +96,7 @@ function initMobileMenu() {
 function createMobileMenu(navLinks, navCta) {
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'mobile-menu';
+    mobileMenu.id = 'mobile-nav';
     
     // Build links dynamically from existing nav
     let linksHtml = '';
