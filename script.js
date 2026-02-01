@@ -20,17 +20,25 @@ function initNavbar() {
 
     let ticking = false;
 
+    // Update navbar based on current scroll position
+    function updateNavbar() {
+        const currentScroll = window.pageYOffset;
+
+        // Add scrolled class when page is scrolled
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
+    // Sync initial state in case page loads already scrolled
+    window.requestAnimationFrame(updateNavbar);
+
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                const currentScroll = window.pageYOffset;
-
-                // Add scrolled class when page is scrolled
-                if (currentScroll > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
+                updateNavbar();
                 ticking = false;
             });
             ticking = true;
