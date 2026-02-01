@@ -260,18 +260,37 @@ function initBreadcrumbTrail() {
     let mouseX = 0;
     let mouseY = 0;
 
+    // Cache hero bounds to avoid layout thrashing in mousemove
+    let heroBounds = { top: 0, right: 0, bottom: 0, left: 0 };
+
+    function updateHeroBounds() {
+        const rect = hero.getBoundingClientRect();
+        const scrollX = window.scrollX || window.pageXOffset;
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        heroBounds = {
+            top: rect.top + scrollY,
+            right: rect.right + scrollX,
+            bottom: rect.bottom + scrollY,
+            left: rect.left + scrollX
+        };
+    }
+
+    // Initialize bounds and update on resize
+    updateHeroBounds();
+    window.addEventListener('resize', updateHeroBounds);
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Check if mouse is within hero section bounds
-        const heroRect = hero.getBoundingClientRect();
+        // Check if mouse is within hero section bounds using cached document coordinates
         const wasInHero = isInHero;
         isInHero = (
-            e.clientX >= heroRect.left &&
-            e.clientX <= heroRect.right &&
-            e.clientY >= heroRect.top &&
-            e.clientY <= heroRect.bottom
+            e.pageX >= heroBounds.left &&
+            e.pageX <= heroBounds.right &&
+            e.pageY >= heroBounds.top &&
+            e.pageY <= heroBounds.bottom
         );
 
         // Start animation loop when entering hero
