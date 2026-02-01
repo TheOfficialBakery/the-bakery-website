@@ -18,14 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+    let ticking = false;
 
-        // Add scrolled class when page is scrolled
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.pageYOffset;
+
+                // Add scrolled class when page is scrolled
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 }
