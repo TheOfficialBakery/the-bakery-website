@@ -390,6 +390,17 @@ body {
     align-items: center;
     gap: 8px;
     animation: fadeUp 1s ease-out 1s both;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.scroll-indicator:hover span {
+    color: var(--bread-dark);
+}
+
+.scroll-indicator:hover .scroll-arrow {
+    border-color: var(--bread-dark);
 }
 
 .scroll-indicator span {
@@ -397,6 +408,7 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--bread-medium);
+    transition: var(--transition-fast);
 }
 
 .scroll-arrow {
@@ -405,6 +417,7 @@ body {
     border: 2px solid var(--bread-light);
     border-radius: 12px;
     position: relative;
+    transition: var(--transition-fast);
 }
 
 .scroll-arrow::before {
@@ -1405,7 +1418,8 @@ body {
 .product-card:focus-visible,
 .contact-card a:focus-visible,
 .footer-column a:focus-visible,
-.mobile-nav-links a:focus-visible {
+.mobile-nav-links a:focus-visible,
+.scroll-indicator:focus-visible {
     outline: 2px solid var(--bread-dark);
     outline-offset: 3px;
 }
