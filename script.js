@@ -341,6 +341,10 @@ function initBreadcrumbTrail() {
                 } else {
                     document.removeEventListener('mousemove', handleMouseMove);
                     isInHero = false;
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
                 }
             });
         }, { rootMargin: '100px' }); // Add a small margin to start tracking slightly before/after
