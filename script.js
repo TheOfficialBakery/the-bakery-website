@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initParallax();
     initBreadcrumbTrail();
+    initBackToTop();
 });
 
 /* ===================================
@@ -400,4 +401,58 @@ function initBreadcrumbTrail() {
 
         animationId = requestAnimationFrame(updateTrail);
     }
+}
+
+/* ===================================
+   Back to Top Button
+   =================================== */
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('back-to-top');
+    const skipLink = document.querySelector('.skip-link');
+
+    if (!backToTopBtn) return;
+
+    let ticking = false;
+
+    const updateBackToTopVisibility = () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    };
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateBackToTopVisibility();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Ensure correct initial visibility on load
+    updateBackToTopVisibility();
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        const prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+
+        // Move focus to skip link for accessibility
+        if (skipLink) {
+            skipLink.focus();
+        } else if (document.body) {
+            if (!document.body.hasAttribute('tabindex')) {
+                document.body.setAttribute('tabindex', '-1');
+            }
+            document.body.focus(); // Fallback with ensured focusability
+        }
+    });
 }

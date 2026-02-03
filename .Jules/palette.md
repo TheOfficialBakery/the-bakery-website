@@ -9,3 +9,7 @@ This journal tracks critical UX and accessibility learnings.
 ## 2026-10-24 - Interactive Navigation Indicators
 **Learning:** Visual navigation cues like "scroll down" arrows are often implemented as static elements, missing an opportunity for keyboard navigation and clear user intent.
 **Action:** Convert purely visual navigation indicators into semantic anchor tags with `aria-label` to support both mouse/touch interaction and keyboard users.
+
+## 2026-10-25 - Back to Top Focus Management
+**Learning:** "Back to Top" buttons can trap keyboard focus at the bottom of the page, requiring users to tab backward through the entire document.
+**Action:** Couple `window.scrollTo(0,0)` with explicit focus placement on the first interactive element (e.g., `.skip-link`) to reset the navigation context.
