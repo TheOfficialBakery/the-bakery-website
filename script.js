@@ -437,9 +437,12 @@ function initBackToTop() {
     updateBackToTopVisibility();
     // Scroll to top on click
     backToTopBtn.addEventListener('click', () => {
+        const prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
 
         // Move focus to skip link for accessibility
