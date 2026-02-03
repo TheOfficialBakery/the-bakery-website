@@ -313,7 +313,7 @@ function initBreadcrumbTrail() {
         });
         heroResizeObserver.observe(hero);
     }
-    document.addEventListener('mousemove', (e) => {
+    function handleMouseMove(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
@@ -330,7 +330,24 @@ function initBreadcrumbTrail() {
         if (isInHero && !wasInHero && !animationId) {
             animationId = requestAnimationFrame(updateTrail);
         }
-    });
+    }
+
+    // Optimization: Dynamically attach/detach mousemove listener based on viewport visibility to reduce overhead.
+    if (window.IntersectionObserver) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.addEventListener('mousemove', handleMouseMove);
+                } else {
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    isInHero = false;
+                }
+            });
+        }, { rootMargin: '100px' }); // Add a small margin to start tracking slightly before/after
+        observer.observe(hero);
+    } else {
+        document.addEventListener('mousemove', handleMouseMove);
+    }
 
     // Animation loop - only runs when cursor is in hero
     function updateTrail(timestamp) {
