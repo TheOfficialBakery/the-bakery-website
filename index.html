@@ -26,15 +26,6 @@
     <link rel="canonical" href="https://the-bakery.co/">
     <meta name="robots" content="index, follow">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <!-- NOTE:
-         CSP is currently applied via a meta tag because HTTP response headers
-         are not configured here (e.g., static hosting constraints).
-         Meta-based CSP does NOT support the `frame-ancestors` directive and
-         therefore does not provide full clickjacking protection.
-         For stronger protection (including `frame-ancestors`), configure
-         an equivalent Content-Security-Policy header at the HTTP server level. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; connect-src 'self';">
-
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="Original.webp">
 
