@@ -439,8 +439,11 @@ function initBackToTop() {
         // Move focus to skip link for accessibility
         if (skipLink) {
             skipLink.focus();
-        } else {
-            document.body.focus(); // Fallback
+        } else if (document.body) {
+            if (!document.body.hasAttribute('tabindex')) {
+                document.body.setAttribute('tabindex', '-1');
+            }
+            document.body.focus(); // Fallback with ensured focusability
         }
     });
 }
