@@ -17,3 +17,7 @@
 ## 2026-02-04 - Cumulative Layout Shift from Missing Image Dimensions
 **Learning:** Missing `width` and `height` attributes on images causes the browser to allocate space only after the image header downloads and is parsed, resulting in a layout shift (CLS) and negatively impacting Core Web Vitals.
 **Action:** Always explicitly define `width` and `height` attributes on `<img>` tags matching the intrinsic aspect ratio/size to reserve layout space immediately.
+
+## 2026-02-05 - Conditional Event Listener Attachment
+**Learning:** Attaching heavy event listeners (like `mousemove` for visual effects) globally consumes resources even when the effect is not visible.
+**Action:** Use `IntersectionObserver` to dynamically attach and detach event listeners based on the visibility of the target element.
