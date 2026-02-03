@@ -13,6 +13,15 @@ The website is hosted on **GitHub Pages**.
 
 ---
 
+## Security Headers
+
+To ensure full security protection (including `frame-ancestors` for clickjacking protection), the website must be hosted on a platform that supports custom HTTP headers, such as **Netlify** or **Cloudflare Pages**.
+
+- The repository includes a `_headers` file (standard format) and `netlify.toml` (Netlify specific) to configure these headers automatically.
+- **GitHub Pages** does not support custom headers, so while the site will function, it will not have the full security posture defined in these files.
+
+---
+
 ## Deployment Process
 
 GitHub Pages automatically deploys when you push to the `master` branch.
