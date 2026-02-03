@@ -394,7 +394,7 @@ function initBreadcrumbTrail() {
             }
 
             // Apply to DOM
-            crumb.el.style.transform = `translate(${crumb.x}px, ${crumb.y}px)`;
+            crumb.el.style.transform = `translate3d(${crumb.x}px, ${crumb.y}px, 0)`;
             crumb.el.style.opacity = crumb.opacity;
         });
 
